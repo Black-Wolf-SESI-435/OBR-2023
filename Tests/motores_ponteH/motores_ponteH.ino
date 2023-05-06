@@ -19,9 +19,10 @@ class Motor {
         }
 
     void ligar(bool pinoM, bool pinoB, byte velocidade) {
-            Serial.println("Pino Marrom:  (" + String(pinoMarrom) + ")\t\t\t" + String(pinoM));
-            Serial.println("Pino Branco:  (" + String(pinoBranco) + ")\t\t\t" + String(pinoB));
-            Serial.println("Pino Laranja: (" + String(pinoControle) + ")\t\t\t" + String(velocidade));
+
+            Serial.println("Pino Marrom:  (" + String(pinoM) + ")\t\t\t" + String(pinoM? HIGH : LOW));
+            Serial.println("Pino Branco:  (" + String(pinoB) + ")\t\t\t" + String(pinoB? HIGH : LOW));
+            Serial.println("Pino Laranja: (" + String(velocidade) + ")\t\t\t" + String(velocidade));
 
             digitalWrite(pinoMarrom, pinoM);
             digitalWrite(pinoBranco, pinoB);
@@ -30,51 +31,21 @@ class Motor {
 };
 
 
-Motor motorDireita (52, 53, 12);    // Marrom (IN_1 ) : Branco (IN_2) : Laranja (EN_A)
-Motor motorEsquerda(50, 51, 13);    // Marrom (IN_3 ) : Branco (IN_4) : Laranja (EN_B)
+Motor motorDireita (22, 24, 13);    // Azul (IN_1 ) : Verde (IN_2) : Roxo (EN_A)
+Motor motorEsquerda(23, 25, 11);    // Amarelo (IN_3 ) : Branco (IN_4) : Laranja (EN_B)
 
 void setup() {
     Serial.begin(9600);
 }
 
 void loop() {
-    Serial.println("----------------------- Testando Motor Direito -----------------------");
+    Serial.println("----------------------- Testando Motores -----------------------");
     Serial.println("Motor direita -> Frente:");
     motorDireita.ligar(LOW, HIGH, 255);
     delay(DELAY);
-
-    Serial.println("Motor direita -> Re:");
-    motorDireita.ligar(HIGH, LOW, 255);
-    delay(DELAY);
-
-    Serial.println("---------------------- Testando Motor Esquerdo -----------------------");
-    Serial.println("Motor direita -> Frente:");
-    motorDireita.ligar(LOW, HIGH, 255);
-    delay(DELAY);
-
-    Serial.println("Motor direita -> Re:");
-    motorDireita.ligar(HIGH, LOW, 255);
-    delay(DELAY);
-
-
-    Serial.println("--------------------------- Testando Robo ----------------------------");
-    Serial.println("Robo -> Frente:");
-    motorDireita.ligar(LOW, HIGH, 255);
+    
+    Serial.println("Motor Esquerda -> Frente:");
     motorEsquerda.ligar(LOW, HIGH, 255);
     delay(DELAY);
-
-    Serial.println("Robo direita -> Re:");
-    motorDireita.ligar(HIGH, LOW, 255);
-    motorEsquerda.ligar(HIGH, LOW, 255);
-    delay(DELAY);
-
-    Serial.println("Motor direita -> Horario:");
-    motorDireita.ligar(HIGH, LOW, 255);
-    motorEsquerda.ligar(LOW, HIGH, 255);
-    delay(DELAY);
-
-    Serial.println("Motor direita -> Antihorario:");
-    motorDireita.ligar(LOW, HIGH, 255);
-    motorEsquerda.ligar(HIGH, LOW, 255);
-    delay(DELAY);
+   
 }
